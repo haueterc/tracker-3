@@ -1,0 +1,21 @@
+.profile_pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 20%;
+}
+
+button.collapsed {
+    width: 40px;
+}
+
+.lifting-pic {
+  padding: 9px  9px !important;
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.navbar-inverse {
+    margin-bottom: 0px;
+}

@@ -1,0 +1,8 @@
+#main_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#main_div > * {
+    justify-items: center;
+}

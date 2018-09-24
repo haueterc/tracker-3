@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 class Following extends Component {
     render () {
         let { users } = this.props.twitterFriends;
+        let { twitterFriendsIds } = this.props.twitterFriendsIds;
         let panel = 'hello';
         users ? panel = (
                 <Well bsSize="small">
@@ -48,7 +49,8 @@ class Following extends Component {
 function mapStateToProps(state){
     return {
         user: state.user,
-        twitterFriends: state.twitterFriends
+        twitterFriends: state.twitterFriends,
+        twitterFriendsIds: state.twitterFriendsIds
     }
 }
 

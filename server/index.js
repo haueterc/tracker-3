@@ -110,6 +110,7 @@ app.get('/auth/me', function(req, res) {
 })
 app.put('/twitter', tc.getUser)
 app.put('/twitter/friends', tc.getFriends)
+app.put('/twitter/friends/ids', tc.getFriendsIds)
 
 app.get('/logout', function(req, res) {
     console.log('hit /logout')

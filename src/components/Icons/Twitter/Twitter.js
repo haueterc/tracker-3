@@ -6,6 +6,7 @@ import Following from './Following';
 import { connect } from 'react-redux';
 import { getTwitterUser } from '../../../ducks/reducer';
 import { getTwitterFriends } from '../../../ducks/reducer';
+import { getTwitterFriendsIds } from '../../../ducks/reducer';
 
 class Twitter extends Component {
     constructor(props) {
@@ -16,30 +17,30 @@ class Twitter extends Component {
     onChangeFollowing() {
         this.setState({showFollowing: !this.state.showFollowing});
         if (!this.state.showFollowing) {
-            this.props.getTwitterFriends('@SamHarrisOrg');
+            this.props.getTwitterFriendsIds('@SamHarrisOrg');
         }
     }
 //Immediately before initial rendering. You can change initial state before the inital render
-    componentWillMount() {}
+    //componentWillMount() {}
 
 //Immediately after initial rendering
-    componentDidMount() {this.props.getTwitterUser('@SamHarrisOrg');}
+   componentDidMount() {this.props.getTwitterUser('@SamHarrisOrg');}
 
 //When the component is about to recieve new props
     componentWillReceiveProps(nextProps) {
         console.log('componentWillReceiveProps', nextProps);
-    }
+   }
 
 //Before re-rendering but after recieving props or state
 //Can return false to prevent re-rendering
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log('shouldComponentUpdate', nextProps, nextState);
-        return true;
+   shouldComponentUpdate(nextProps, nextState) {
+       console.log('shouldComponentUpdate', nextProps, nextState);
+       return true;
     }
 
 //Also before re-rendering but after recieving prop or state and shouldComponentUpdate
     componentWillUpdate(nextProps, nextState) {
-        console.log('componentWillUpdate', nextProps, nextState);
+console.log('componentWillUpdate', nextProps, nextState);
     }
 
 //After component's updates are flushed to the actual DOM
@@ -66,7 +67,8 @@ class Twitter extends Component {
                             <Col xs={4} sm={3} md={2} lg={1}>
                                 <Button
                                     onClick={this.onChangeFollowing}>
-                                        <span>following</span> <span className="positiveChange">+{ friends_count }</span>
+                                        <span>following</span>
+                                        <span className="positiveChange">+{ friends_count }</span>
                                 </Button>
                             </Col>
                             <Col xsHidden={true} sm={3} md={2} lg={1}>followers <span className="positiveChange">+{ followers_count }</span></Col>
@@ -94,4 +96,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps,{getTwitterUser, getTwitterFriends})(Twitter);
+export default connect(mapStateToProps,{getTwitterUser, getTwitterFriends, getTwitterFriendsIds})(Twitter);

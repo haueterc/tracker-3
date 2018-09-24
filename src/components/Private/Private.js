@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getUser } from '../../ducks/reducer';
 import NavBar from '../NavBar/NavBar';
 import Twitter from '../Icons/Twitter/Twitter';
+import Dashboard from './Dashboard/Dashboard';
 
 
 class Private extends Component {
@@ -16,6 +17,7 @@ class Private extends Component {
             <div id="main_div">
                 <NavBar/>
                 <Twitter/>
+                <Dashboard/>
             </div>
         )
     }

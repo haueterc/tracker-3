@@ -3,12 +3,14 @@ import axios from 'axios';
 const initialState = {
     user: {},
     twitterUser: {},
-    twitterFriends: {}
+    twitterFriends: {},
+    twitterFriendsIds: {}
 }
 
 const GET_USER = 'GET_USER';
 const GET_TWITTER_USER = 'GET_TWITTER_USER';
 const GET_TWITTER_FRIENDS = 'GET_TWITTER_FRIENDS';
+const GET_TWITTER_FRIENDS_IDS = 'GET_TWITTER_FRIENDS_IDS';
 
 export function getUser() {
     let userData = axios.get('/auth/me', console.log('rdr.getUser>SENT'))
@@ -50,6 +52,19 @@ export function getTwitterFriends(twitterHandle) {
     }
 }
 
+export function getTwitterFriendsIds(twitterHandle) {
+    console.log(`rdr.getTwitterFriendsIds>${twitterHandle}`);
+    let handlesData = axios.put('/twitter/friends/ids', {data:{twitterHandle:twitterHandle}})
+        .then(res => {
+            console.log('rdr.getTwitterFriendsIds>res.data', res.data);
+            return res.data
+        })
+        .catch(err => { console.log('rdr.getTwitterFriendsIds>', err)});
+    return {
+        type: GET_TWITTER_FRIENDS_IDS,
+        payload: handlesData
+    }
+}
 
 
 export default function reducer(state = initialState, action) {
@@ -63,6 +78,9 @@ export default function reducer(state = initialState, action) {
 
         case GET_TWITTER_FRIENDS + '_FULFILLED':
             return Object.assign({}, state, {twitterFriends: action.payload})
+
+        case GET_TWITTER_FRIENDS_IDS + '_FULFILLED':
+            return Object.assign({}, state, {twitterFriendsIds: action.payload})
 
         default:
             return state;
